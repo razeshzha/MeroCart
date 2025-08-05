@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     _id: {
       type: String,
@@ -20,13 +20,13 @@ const UserSchema = new mongoose.Schema(
       required: true,
     },
     cartItems: {
-      type: mongoose.Schema.Types.Mixed, 
-      default: {},
-    },
+      type:Object, 
+      default: {}
+    }
   },
   { minimize: false }
 );
 
-const User = mongoose.models.User || mongoose.model("User", UserSchema);
+const User = mongoose.models.user || mongoose.model('user',userSchema);
 
 export default User;
