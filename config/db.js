@@ -5,23 +5,26 @@ let cached = global.mongoose;
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
- async function connectDB() {
+
+async function connectDB() {
   if (cached.conn) {
     return cached.conn;
   }
 
   if (!cached.promise) {
-        const opts = {
-            bufferCommands: false,
-        }
+    const opts = {
+      bufferCommands: false,
+    };
 
-     cached.promise = mongoose.connect(`${process.env.MONGODB_URI}/merocart`,opts).then(mongoose => {
-      return mongoose
-     })
-      
-    }
-    catched.conn = await cached.promise
-    return catched.conn
+    cached.promise = mongoose
+      .connect(`${process.env.MONGODB_URI}/merocart`, opts)
+      .then((mongoose) => {
+        return mongoose;
+      });
   }
 
-export default connectDB
+  cached.conn = await cached.promise;
+  return cached.conn;
+}
+
+export default connectDB;

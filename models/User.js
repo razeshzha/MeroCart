@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema(
   {
     _id: {
-      type: String,
+      type: String, // Clerk's user ID will be stored here
       required: true,
     },
     name: {
@@ -20,13 +20,13 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     cartItems: {
-      type:Object, 
-      default: {}
-    }
+      type: Object,
+      default: {},
+    },
   },
   { minimize: false }
 );
 
-const User = mongoose.models.user || mongoose.model('user',userSchema);
+const User = mongoose.models.user || mongoose.model("user", userSchema);
 
 export default User;
